@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="906d8a5e-7133-42a6-8d2b-0183f72a2896" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ElmWorkspace">
+    <elmProjects />
+    <settings elmCompilerPath="" elmFormatPath="" elmTestPath="" isElmFormatOnSaveEnabled="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Elm Module" />
+        <option value="Haskell Module" />
+      </list>
+    </option>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="hzVBaYaS" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1VkvySSfHuZVBWRTp0ASeksJuPd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="org.elm.workspace.ui.ElmWorkspaceConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="HaskellStackConfigurationType" factoryName="Haskell Stack Runner" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="ElmAutoDecoder" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="executable" value="ElmAutoDecoder-exe" />
+      <option name="programArgs" value="test.elm" />
+      <option name="stackArgs" value="" />
+      <option name="workingDirPath" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/Code/VPlanAkka" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../workbench-example-app" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="906d8a5e-7133-42a6-8d2b-0183f72a2896" name="Default Changelist" comment="" />
+      <created>1577810161944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577810161944</updated>
+      <workItem from="1577810166074" duration="734000" />
+      <workItem from="1577813607659" duration="16292000" />
+      <workItem from="1577888724478" duration="329000" />
+      <workItem from="1577889296005" duration="10253000" />
+      <workItem from="1577901894328" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="450" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577810493710">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="450" y="196" key="#com.intellij.execution.impl.EditConfigurationsDialog/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577810493710" />
+    <state x="711" y="343" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577888863442">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="711" y="343" key="#com.intellij.fileTypes.FileTypeChooser/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577888863442" />
+    <state width="1812" height="287" key="GridCell.Tab.0.bottom" timestamp="1577899551474">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1812" height="287" key="GridCell.Tab.0.bottom/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577899551474" />
+    <state width="1812" height="287" key="GridCell.Tab.0.center" timestamp="1577899551474">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1812" height="287" key="GridCell.Tab.0.center/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577899551474" />
+    <state width="1812" height="287" key="GridCell.Tab.0.left" timestamp="1577899551474">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1812" height="287" key="GridCell.Tab.0.left/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577899551474" />
+    <state width="1812" height="287" key="GridCell.Tab.0.right" timestamp="1577899551474">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1812" height="287" key="GridCell.Tab.0.right/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577899551474" />
+    <state x="488" y="173" key="SettingsEditor" timestamp="1577844865281">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="488" y="173" key="SettingsEditor/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577844865281" />
+    <state x="670" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1577888725347">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="670" y="367" key="com.intellij.ide.util.TipDialog/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577888725347" />
+    <state x="515" y="144" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1577896134218">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="515" y="144" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577896134218" />
+    <state x="668" y="271" width="645" height="538" key="find.popup" timestamp="1577844405559">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="668" y="271" width="645" height="538" key="find.popup/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577844405559" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1577890369051">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577890369051" />
+    <state x="367" y="265" key="new project wizard" timestamp="1577899549432">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="367" y="265" key="new project wizard/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577899549432" />
+    <state x="655" y="247" key="run.anything.popup" timestamp="1577820269070">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="655" y="247" key="run.anything.popup/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577820269070" />
+    <state x="654" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1577889658983">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="654" y="239" width="672" height="678" key="search.everywhere.popup/62.0.1858.1080/1920.15.1680.1050@62.0.1858.1080" timestamp="1577889658983" />
+  </component>
+</project>
