@@ -2,42 +2,57 @@ module Main where
 
 import Lib
 import Parser
+import DecoderTypes
 import System.Environment
 import Data.Char
 import Data.String as Str
 import Data.List as L
 import Control.Monad
 import Control.Applicative
+import Data.Bifunctor
 
-genDecoder :: Decodeable -> String
-genDecoder (Decodeable name t) = dname ++ " : JD.Decoder " ++ name ++ "\n" ++ dname ++ " = " ++ decode t 1
-    where dname = firstToLower name ++ "Decoder"
+genDecoder :: ([String],[Decodeable]) -> String
+genDecoder (imports, ds) = concatMap (++"\n") imports
+        ++ concatMap (\(Decodeable n t) -> fromElmTop n (decode t) ++ "\n\n") ds
 
-genEncoder :: Decodeable -> String
-genEncoder (Decodeable name t) = ename ++ " : " ++ name ++ " -> JE.Value" ++ "\n" ++ ename ++ " = " ++ encode t 0
-    where ename = firstToLower name ++ "Encoder"
+decode :: Type -> Decoder
+decode BoolT = Native "bool"
+decode IntT = Native "int"
+decode FloatT = Native "float"
+decode StringT = Native "string"
+decode (CustomT s) = Custom s
+decode (ListT t) = List $ decode t
+decode (RecordT ps) = Record $ map (\(Property k v) -> (k, decode v)) ps
+decode (ADT ts) = ADTD $ map (second (map decode)) ts
 
-decode :: Type -> Int -> String
-decode BoolT _       = "JD.bool"
-decode IntT _        = "JD.int"
-decode StringT _     = "JD.string"
-decode FloatT _      = "JD.float"
-decode (List t) d    = "(JD.list " ++ decode t d ++ ")"
-decode (Record ps) d = "(JD.map" ++ ifThen (=="1") "" (show (length ps)) ++
-                     " (\\" ++ foldl (\acc (Property n t) -> acc ++ n ++ " ") "" ps
-                      ++ "-> {" ++ intercalate ", " (map (\(Property n t) -> n ++ "=" ++ n) ps) ++ "})"
-                      ++ concatMap (\(Property n t) -> "\n" ++ concat (replicate d "    ") ++ "(JD.field \"" ++ n ++ "\" " ++ (decode t (d + 1)) ++ ")") ps
-                      ++ ")"
+fromElmTop :: String -> Decoder -> String
+fromElmTop n d = "decode" ++ n ++ " : JD.Decoder " ++ n ++
+               "\ndecode" ++ n ++ " = " ++ fromElm 1 d
 
---TODO
-encode :: Type -> Int -> String
-encode BoolT _       = "JE.bool"
-encode IntT _        = "JE.int"
-encode StringT _     = "JE.string"
-encode FloatT _      = "JE.float"
-encode (List t) d    = "(JE.list " ++ (encode t d) ++ ")"
-encode (Record ps) d = "\\" ++ xname ++ " -> (JE.object [" ++ intercalate ", " (map (\(Property n t) -> "(" ++ n ++ ", " ++ encode t (d + 1) ++ " " ++ xname ++ "." ++ n ++ ")") ps) ++ "])"
-    where xname = "x" ++ show d
+
+fromElm :: Int -> Decoder -> String
+fromElm i d = case d of
+    Native s -> "JD." ++ s
+    Custom s -> "decode" ++ s
+    List d -> "(JD.list " ++ fromElm i d ++ ")"
+    Record ps -> "(JD.map" ++ showOrEmpty (length ps) ++ genLambda (map fst ps) ++ "\n" ++ concatMap ((++"\n") . genField) ps ++ indent ++ ")"
+    ADTD ts -> "(JD.field \"tag\" JD.string |> JD.andThen (\\t -> case t of\n"
+      ++ concatMap ((++"\n") . genTag) ts
+      ++ indent ++ indent ++ "_ -> JD.fail <| \"unexpected tag \" ++ t\n"
+      ++ indent ++ "))"
+    where
+        indent = concat $ replicate i "    "
+        genLambda :: [String] -> String
+        genLambda ps = "(\\" ++ concatMap (++" ") ps ++ "-> {" ++ intercalate ", " (map (\p -> p ++ "=" ++ p) ps) ++ "})"
+        genField :: (String, Decoder) -> String
+        genField (n, d) = indent ++ "(JD.field \"" ++ n ++ "\" " ++ fromElm (i + 1) d ++ ")"
+        genTag :: (String, [Decoder]) -> String
+        genTag (t, ts) = case ts of
+            [] -> indent ++ indent ++ "\"" ++ t ++ "\" -> JD.succeed " ++ t
+            _  -> indent ++ indent ++ "\"" ++ t ++ "\" -> JD.map" ++ showOrEmpty (length ts) ++ " " ++ t ++ " "
+                    ++ concatMapI (\i' d -> "(JD.field \"val" ++ show i' ++ "\" " ++ fromElm (i + 1) d ++ ")") ts
+        showOrEmpty 1 = ""
+        showOrEmpty x = show x
 
 main :: IO ()
 main = do
@@ -47,7 +62,10 @@ main = do
         Left e -> putStrLn $ "Error: " ++ show e 
         Right decodeables -> do 
             print decodeables
-            let generated = intercalate"\n\n\n" $ map (\x -> genDecoder x ++ "\n\n" ++ genEncoder x) $ decodeables
-            writeFile ("Json_" ++ fileName) $ "module Json_" ++ L.takeWhile (/='.') fileName ++ " exposing(..)\nimport Json.Decode as JD\nimport Json.Encode as JE\n\n" ++ generated
-            putStrLn $ "Written to: " ++ ("Json_" ++ fileName)
+            let generated = genDecoder decodeables
+            let lastPart  = reverse (takeWhile (/='/') $ reverse fileName)
+            let firstPart = dropWhileEnd (/='/') fileName
+            let fileName' = firstPart ++ "Json_" ++ lastPart
+            writeFile (fileName') $ "module Json_" ++ L.takeWhile (/='.') fileName ++ " exposing(..)\nimport Json.Decode as JD\nimport Json.Encode as JE\nimport " ++ (dropEnd 1 $ dropWhileEnd (/='.') fileName) ++ " exposing (..)\n\n" ++ generated
+            putStrLn $ "Written to: " ++ fileName'
     

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ElmAutoDecoder.iml" filepath="$PROJECT_DIR$/ElmAutoDecoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ElmTest/ElmTest.iml" filepath="$PROJECT_DIR$/ElmTest/ElmTest.iml" />
     </modules>
   </component>
 </project>

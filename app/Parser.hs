@@ -3,19 +3,20 @@ module Parser where
 import Lib
 import Text.Parsec(ParseError)
 import Text.Parsec.String (Parser)
-import Text.Parsec.String.Char (anyChar)
 import Text.Parsec.String.Char
 import FunctionsAndTypesForParsing (regularParse, parseWithEof, parseWithLeftOver)
 import Data.Char
-import Text.Parsec.String.Combinator (many1)
-import Control.Applicative
+import Text.Parsec.String.Combinator
+import Control.Applicative hiding (optional)
 
 data Type = BoolT
           | IntT
           | StringT
           | FloatT
-          | List Type
-          | Record [Property]
+          | ListT Type
+          | CustomT String
+          | RecordT [Property]
+          | ADT [(String, [Type])]
           deriving Show
 
 data Property = Property String Type
@@ -23,41 +24,72 @@ data Property = Property String Type
 
 data Decodeable = Decodeable String Type deriving Show
 
-parseDecodeables :: String -> Either ParseError [Decodeable]
+parseDecodeables :: String -> Either ParseError ([String],[Decodeable])
 parseDecodeables = regularParse $ decodeables
 
-decodeables :: Parser [Decodeable]
+decodeables :: Parser ([String],[Decodeable])
 decodeables = do 
     spaces
-    optional $ do
-        string "module"
-        spaces
-        alphaNumStr
-        spaces
-        string "exposing"
-        spaces
-        string "("
-        anyOf $ alphaNumChars ++ "._,\n "
-        string ")"
+    optional moduleDef
     spaces
-    many decodeable
+    is <- many importP
+    spaces
+    ds <- many decodeable
+    return (is, ds)
+
+moduleDef :: Parser ()
+moduleDef = do
+    string "module"
+    spaces
+    many1 $ noneOf " \t\n"
+    spaces
+    string "exposing"
+    spaces
+    between (string "(") (string ")") (many $ noneOf ")")
+    return ()
+
+importP :: Parser String
+importP = do
+    string "import"
+    spaces
+    x <- many1 $ noneOf "\n"
+    spaces
+    return $ "import " ++ x ++ "\n"
 
 decodeable :: Parser Decodeable
-decodeable = do 
+decodeable = do
     string "type"
     spaces
-    string "alias"
-    spaces 
-    name <- alphaNumStr
-    spaces 
-    string "="
-    spaces
-    t <- typeT
-    spaces
-    return $ Decodeable name t
+    alias <|> adt
+    where
+        alias = do
+            string "alias"
+            spaces
+            name <- alphaNumStr
+            spaces
+            string "="
+            spaces
+            t <- typeT
+            spaces
+            return $ Decodeable name t
+        adt = do
+            name <- alphaNumStr
+            spaces
+            string "="
+            spaces
+            tags <- tag `sepBy1` (string "|")
+            spaces
+            return $ Decodeable name (ADT tags)
+        tag = do
+            spaces
+            t <- alphaNumStr
+            spaces
+            ps <- many (typeT <* spaces)
+            spaces
+            return (t, ps)
 
 typeT :: Parser Type 
-typeT = intT <|> boolT <|> stringT <|> floatT <|> listT <|> recordT
+typeT = intT <|> boolT <|> stringT <|> floatT <|> listT <|> recordT <|> customT
 
 intT :: Parser Type
 intT = string "Int" >> return IntT
@@ -68,15 +100,19 @@ listT = do
     string "List"
     spaces
     t <- typeT
-    return $ List t
+    return $ ListT t
 recordT = do
     string "{"
     spaces
     ps <- many property
     spaces
     string "}"
-    return $ Record ps 
-    
+    return $ RecordT ps
+customT = do
+    c <- satisfy isUpper
+    rest <- many alphaNum
+    return $ CustomT $ c:rest
+
 property :: Parser Property
 property = do 
     name <- alphaNumStr
@@ -88,4 +124,16 @@ property = do
     optional $ string ","
     spaces
     return $ Property name t
-    
+
+
+
+--ADT :
+--type T = A | B Int Int | C String Int Bool
+--
+--decodeTest4 :JD.Decoder T
+--decodeTest4 = JD.field "tag" JD.string |> JD.andThen (\t -> case t of
+--        "A" -> JD.succeed A
+--        "B" -> JD.map2 B JD.int JD.int
+--        "C" -> JD.map3 C JD.string JD.int JD.bool
+--        _ -> JD.fail <| "unexpected tag " ++ t
+--    )

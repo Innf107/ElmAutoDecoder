@@ -23,3 +23,10 @@ type alias Test2 = {
             someOtherProp: String
         }
     }
+
+type alias Test3 = {
+        prop1: String,
+        prop2: Test2
+    }
+
+type T = A | B String | C Int Bool String

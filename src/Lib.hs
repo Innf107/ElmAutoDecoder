@@ -35,3 +35,13 @@ ifThen f y x
     | f x = y
     | otherwise = x
 
+dropEnd :: Int -> [a] -> [a]
+dropEnd n xs = take (length xs - n) xs
+
+concatMapI :: (Int -> a -> [b]) -> [a] -> [b]
+concatMapI = concatMapInner 0
+    where
+        concatMapInner _ _ [] = []
+        concatMapInner i f (x:xs) = f i x ++ concatMapInner (i + 1) f xs 
+        
+        
