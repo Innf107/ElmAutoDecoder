@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="906d8a5e-7133-42a6-8d2b-0183f72a2896" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ElmTest/ElmTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Json_test.elm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ElmTest/src/Json_Test.elm" beforeDir="false" afterPath="$PROJECT_DIR$/ElmTest/src/Json_Test.elm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Record.grammar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Main.hs" beforeDir="false" afterPath="$PROJECT_DIR$/app/Main.hs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Parser.hs" beforeDir="false" afterPath="$PROJECT_DIR$/app/Parser.hs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Lib.hs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lib.hs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.elm" beforeDir="false" afterPath="$PROJECT_DIR$/ElmTest/src/Test.elm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +118,9 @@
       <workItem from="1577889296005" duration="10253000" />
       <workItem from="1577901894328" duration="6000" />
       <workItem from="1592320837945" duration="2079000" />
-      <workItem from="1592322927996" duration="10093000" />
+      <workItem from="1592322927996" duration="11873000" />
+      <workItem from="1592603149705" duration="46000" />
+      <workItem from="1592679171008" duration="3686000" />
     </task>
     <servers />
   </component>
@@ -141,10 +140,10 @@
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
     <state x="449" y="192" key="SettingsEditor/0.34.1920.1046/3600.0.1920.1080/1920.0.1680.1050@0.34.1920.1046" timestamp="1592322935315" />
-    <state x="607" y="283" width="695" height="545" key="new project wizard" timestamp="1592330521574">
+    <state x="607" y="283" width="695" height="545" key="new project wizard" timestamp="1592603198634">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state x="607" y="283" width="695" height="545" key="new project wizard/0.34.1920.1046/3600.0.1920.1080/1920.0.1680.1050@0.34.1920.1046" timestamp="1592330521574" />
+    <state x="607" y="283" width="695" height="545" key="new project wizard/0.34.1920.1046/3600.0.1920.1080/1920.0.1680.1050@0.34.1920.1046" timestamp="1592603198634" />
     <state x="624" y="256" key="run.anything.popup" timestamp="1592332361936">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>

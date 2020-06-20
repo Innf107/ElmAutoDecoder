@@ -124,16 +124,3 @@ property = do
     optional $ string ","
     spaces
     return $ Property name t
-
-
-
---ADT :
---type T = A | B Int Int | C String Int Bool
---
---decodeTest4 :JD.Decoder T
---decodeTest4 = JD.field "tag" JD.string |> JD.andThen (\t -> case t of
---        "A" -> JD.succeed A
---        "B" -> JD.map2 B JD.int JD.int
---        "C" -> JD.map3 C JD.string JD.int JD.bool
---        _ -> JD.fail <| "unexpected tag " ++ t
---    )

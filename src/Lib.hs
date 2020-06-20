@@ -30,6 +30,7 @@ mapIndexed f xs = mapIndexedInner f 0 xs
           mapIndexedInner _ _ [] = []
           mapIndexedInner f i (x:xs) = (f x i):(mapIndexedInner f (i + 1) xs)
           
+          
 ifThen :: (a -> Bool) -> a -> a -> a
 ifThen f y x
     | f x = y
